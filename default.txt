@@ -1,0 +1,64 @@
+#NoEnv
+SetWorkingDir %A_ScriptDir%
+CoordMode, Mouse, Window
+SendMode Input
+#SingleInstance Force
+SetTitleMatchMode 2
+SetWinDelay 0
+SetKeyDelay -1
+SetMouseDelay -1
+
+#IfWinActive Roblox
+
+F3::
+KeyDuration := 30
+Start:
+WinActivate, Roblox ahk_class WINDOWSCLIENT
+Send, {w Up}
+Send, {s Up}
+Send, {d Up}
+Send, {a Up}
+Send, {RButton Up}
+Click, 100, 100, 0
+Sleep, %KeyDuration%
+Click, 101, 101, 0
+Sleep, %KeyDuration%
+Click, 1, 1, 0
+Sleep, %KeyDuration%
+Click, 0, 0, 0
+Sleep, 100
+Send, {Escape Down}
+Sleep, %KeyDuration%
+Send, {Escape Up}{r Down}
+Sleep, %KeyDuration%
+Send, {r Up}
+Sleep, %KeyDuration%
+Send, {Enter Down}
+Sleep, %KeyDuration%
+Send, {Enter Up}
+Sleep, 20000
+CoordMode, Pixel, Window
+ImageSearch, FoundX, FoundY, 750, 440, 1800, 800, *50 hive.png
+If (ErrorLevel)
+{
+    Loop, 4
+    {
+        Send, .
+        Sleep, %KeyDuration%
+    }
+}
+Sleep, 100
+Loop, 5
+{
+    Send, {o Down}
+    Sleep, %KeyDuration%
+    Send, {o Up}
+    Sleep, 100
+}
+Return
+
+#IfWinActive
+F8::
+MsgBox, Reloading Script...
+Reload
+Return
